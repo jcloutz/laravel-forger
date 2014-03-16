@@ -1,0 +1,22 @@
+{
+    "name": "jcloutz/mocker",
+    "description": "",
+    "authors": [
+        {
+            "name": "Jeremy Cloutier",
+            "email": "jcloutier24@yahoo.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.1.*",
+        "fzaninotto/faker": "1.4.*@dev"
+    },
+    "autoload": {
+        "classmap": [],
+        "psr-0": {
+            "Jcloutz\\Mocker\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
