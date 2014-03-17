@@ -11,7 +11,11 @@ trait MockerTrait
      */
     public static function mockInstance($overrides = array())
     {
-        return self::getMocker($overrides);
+        $mocker = new Mocker;
+        $instance = $mocker->mock(new self)
+            ->override($overrides)
+            ->get();
+        return $instance;
     }
 
     /**
@@ -21,30 +25,11 @@ trait MockerTrait
      */
     public static function mockCreate($overrides = array())
     {
-        $instance = self::getMocker($overrides);
+        $mocker = new Mocker;
+        $instance = $mocker->mock(new self)
+            ->override($overrides)
+            ->get();
         $instance->save();
-        return $instance;
-    }
-
-    /**
-     * Generates a mocker instance to create the mockup data for the
-     * model.
-     * @param  array $overrides
-     * @return \Illumnate\Database\Eloquent\Model
-     */
-    private static function getMocker($overrides = array())
-    {
-        $mock = new Mocker(self::$mockable);
-
-        $instance = new self;
-
-        self::unguard();
-
-        $data = array_merge($mock->getFieldData(), $overrides);
-        $instance->fill($data);
-
-        self::reGuard();
-
         return $instance;
     }
 }
