@@ -1,6 +1,8 @@
 {
-    "name": "jcloutz/mocker",
-    "description": "",
+    "name": "jcloutz/forger",
+    "description": "Intended to allow fast creation of populated model instances for database seeding.",
+    "keywords": ["laravel", "forge", "seeding", "faker"],
+    "license": "WTFPL",
     "authors": [
         {
             "name": "Jeremy Cloutier",
@@ -8,15 +10,14 @@
         }
     ],
     "require": {
-        "php": ">=5.3.0",
-        "illuminate/support": "4.1.*",
+        "php": ">=5.4.0",
         "fzaninotto/faker": "1.4.*@dev"
     },
     "autoload": {
         "classmap": [],
         "psr-0": {
-            "Jcloutz\\Mocker\\": "src/"
+            "Jcloutz\\Forger\\": "src/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }
