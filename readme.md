@@ -1,13 +1,16 @@
 # Fast Model Mockups in Laravel
 
-This package is intended to allow for the fast creation of database object in Laravel.
+[![Build Status](https://travis-ci.org/jcloutz/laravel-mocker.png?branch=master)](https://travis-ci.org/jcloutz/laravel-mocker)
+
+This package is intended to allow for the fast creation of database objects in Laravel.
 
 ## Installation
 
 
 ## Usage
 
-Mocker adds the ability to quickly retrieve a populated mockup of any model in your project. The [Faker Package](https://github.com/fzaninotto/Faker) to generate mockup data based on an array of values.
+Forger adds the ability to quickly retrieve a populated mockup of any model in your project. The [Faker Package](https://github.com/fzaninotto/Faker) to generate mockup data based on an array of values.
+
 
 ```php
 <?php // namespace Models;
@@ -16,27 +19,37 @@ use Jcloutz\Mocker\MockerTrait;
 
 class Widget extends Eloquent
 {
-    use MockerTrait;
+    use ForgerTrait;
 
     protected $table = 'widgets';
 
     protected $fillable = [];
 
     public static $mockable = array(
-        'name' => 'word',
-        'cost' => 'randomFloat|2|0|100',
+        'name'  => 'A Fancy Widget', // Static data
+        'cost'  => 'randomFloat|2|0|100', // Faker method with arguments
+        'price' => 'call|uppercase|word', // Call to user function with data from faker
     );
+
+    public function uppercase($string)
+    {
+        return strtoupper($string);
+    }
 }
 
 ```
 
-The MockerTrait provides two static functions `::MockCreate()` and `::mockInstance()`.
+The ForgerTrait provides two static functions to models `::forge()` and `::forgeCreate()`.
+
 
 ```php
     // Returns an instance of Widget without saving it to the database.
-    $widget = Widget::mockInstance();
+    $widget = Widget::forge();
 
     // Returns an instance of Widget and saves it to the database.
-    $widget = Widget::mockCreate();
+    $widget = Widget::forgeCreate();
 ```
 
+## License
+
+[WTFPL](http://www.wtfpl.net/)
