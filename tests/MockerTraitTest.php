@@ -1,24 +1,24 @@
 <?php
 
-use Jcloutz\Mocker\MockerTrait;
+use Jcloutz\Mimic\MimicTrait;
 
 class MockerTraitTest extends PHPUnit_Framework_TestCase
 {
     public function test_mocker_trait_instance_create()
     {
-        $model = Model::mockInstance();
+        $model = Model::mimic();
         $this->assertNull($model->id);
     }
 
     public function test_mocker_trait_saved_instance_create()
     {
-        $model = Model::mockCreate();
+        $model = Model::mimicCreate();
         $this->assertEquals(1, $model->id);
     }
 
     public function test_mocker_trait_overrides()
     {
-        $model = Model::mockInstance(array(
+        $model = Model::mimic(array(
             'name' => 'name',
             'salary' => 1000,
         ));

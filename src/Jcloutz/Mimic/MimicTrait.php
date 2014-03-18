@@ -1,18 +1,18 @@
-<?php namespace Jcloutz\Mocker;
+<?php namespace Jcloutz\Mimic;
 
-use Jcloutz\Mocker\Mocker;
+use Jcloutz\Mimic\Mimic;
 
-trait MockerTrait
+trait MimicTrait
 {
     /**
      * Creates a mocked up instance of the model and returns it.
      * @param  array  $overrides
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public static function mockInstance($overrides = array())
+    public static function mimic($overrides = array())
     {
-        $mocker = new Mocker;
-        $instance = $mocker->mock(new self)
+        $mocker = new Mimic;
+        $instance = $mocker->model(new self)
             ->override($overrides)
             ->get();
         return $instance;
@@ -23,10 +23,10 @@ trait MockerTrait
      * @param  array  $overrides
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public static function mockCreate($overrides = array())
+    public static function mimicCreate($overrides = array())
     {
-        $mocker = new Mocker;
-        $instance = $mocker->mock(new self)
+        $mocker = new Mimic;
+        $instance = $mocker->model(new self)
             ->override($overrides)
             ->get();
         $instance->save();

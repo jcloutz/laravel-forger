@@ -1,8 +1,8 @@
-<?php namespace Jcloutz\Mocker;
+<?php namespace Jcloutz\Mimic;
 
 use \Faker\Factory;
 
-class Mocker
+class Mimic
 {
     /**
      * @var array
@@ -18,7 +18,7 @@ class Mocker
      * @param array $fields
      */
 
-    public function mock($mockableObject)
+    public function model($mockableObject)
     {
         $this->mockObject = $mockableObject;
         return $this;
@@ -34,7 +34,7 @@ class Mocker
      * Builds an array of data for model fields.
      * @param array $attributes
      */
-    public function executeAction($actionString)
+    public function execute($actionString)
     {
         // get action arguments
         $action = explode('|', $actionString);
@@ -109,7 +109,7 @@ class Mocker
             if (array_key_exists($fieldName, $this->overrideAttributes)) {
                 $this->mockObject->$fieldName = $this->overrideAttributes[$fieldName];
             } else {
-                $this->mockObject->$fieldName = $this->executeAction($action);
+                $this->mockObject->$fieldName = $this->execute($action);
             }
         }
 

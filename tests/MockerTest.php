@@ -1,30 +1,30 @@
 <?php
 
-use Jcloutz\Mocker\Mocker;
-use Jcloutz\Mocker\MockerTrait;
+use Jcloutz\Mimic\Mimic;
+use Jcloutz\Mimic\MimicTrait;
 
 class MockerTest extends PHPUnit_Framework_TestCase
 {
-    private $mocker;
+    private $mimic;
 
     public function setUp()
     {
         parent::setUp();
-        $this->mocker = new Mocker;
+        $this->mimic = new Mimic;
     }
 
     public function test_faker_call_without_args()
     {
         $model = new Model;
-        $this->mocker->mock($model);
-        $this->assertTrue(is_string($this->mocker->executeAction('sentence')));
+        $this->mimic->model($model);
+        $this->assertTrue(is_string($this->mimic->execute('sentence')));
     }
 
     public function test_faker_call_with_args()
     {
         $model = new Model;
-        $this->mocker->mock($model);
-        $data = $this->mocker->executeAction('randomFloat|2|10|20');
+        $this->mimic->model($model);
+        $data = $this->mimic->execute('randomFloat|2|10|20');
         $this->assertTrue(is_numeric($data));
         $this->assertTrue($data > 10);
         $this->assertTrue($data < 20);
@@ -33,53 +33,53 @@ class MockerTest extends PHPUnit_Framework_TestCase
     public function test_user_function_call_without_faker_args()
     {
         $model = new Model;
-        $this->mocker->mock($model);
-        $data = $this->mocker->executeAction('call|makeName');
+        $this->mimic->model($model);
+        $data = $this->mimic->execute('call|makeName');
         $this->assertEquals('Mocker', $data);
     }
 
     public function test_user_function_call_with_faker_func()
     {
         $model = new Model;
-        $this->mocker->mock($model);
-        $data = $this->mocker->executeAction('call|salary|randomNumber');
+        $this->mimic->model($model);
+        $data = $this->mimic->execute('call|salary|randomNumber');
         $this->assertEquals(50000.00, $data);
     }
 
     public function test_user_function_call_with_faker_func_with_args()
     {
         $model = new Model;
-        $this->mocker->mock($model);
-        $data = $this->mocker->executeAction('call|cube|randomNumber|2|2');
+        $this->mimic->model($model);
+        $data = $this->mimic->execute('call|cube|randomNumber|2|2');
         $this->assertEquals(8, $data);
     }
 
     public function test_static_data_argument()
     {
         $model = new Model;
-        $this->mocker->mock($model);
-        $data = $this->mocker->executeAction('static|Mocker');
+        $this->mimic->model($model);
+        $data = $this->mimic->execute('static|Mocker');
         $this->assertEquals('Mocker', $data);
     }
 
     public function test_get_function()
     {
         $model = new Model;
-        $this->mocker->mock($model);
-        $mockedObject = $this->mocker->get();
+        $this->mimic->model($model);
+        $mockedObject = $this->mimic->get();
         $this->assertEquals('Mocker', $mockedObject->name);
         $this->assertEquals(50000.00, $mockedObject->salary);
     }
 
     public function test_attribute_overrides()
     {
-        $mocker = new Mocker;
+        $mimic = new Mimic;
         $model = new Model;
-        $mocker->mock($model)->override(array(
+        $mimic->model($model)->override(array(
             'name' => 'New Name',
             'salary' => 30000.00,
         ));
-        $mockedObject = $mocker->get();
+        $mockedObject = $mimic->get();
 
         $this->assertEquals('New Name', $mockedObject->name);
         $this->assertEquals(30000.00, $mockedObject->salary);
@@ -88,7 +88,7 @@ class MockerTest extends PHPUnit_Framework_TestCase
 
 class Model
 {
-    use MockerTrait;
+    use MimicTrait;
 
     public $id;
 
