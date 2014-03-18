@@ -1,5 +1,5 @@
 {
-    "name": "jcloutz/mimic",
+    "name": "jcloutz/forger",
     "description": "",
     "authors": [
         {
@@ -15,7 +15,7 @@
     "autoload": {
         "classmap": [],
         "psr-0": {
-            "Jcloutz\\Mimic\\": "src/"
+            "Jcloutz\\Forger\\": "src/"
         }
     },
     "minimum-stability": "stable"

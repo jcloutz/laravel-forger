@@ -1,24 +1,24 @@
 <?php
 
-use Jcloutz\Mimic\MimicTrait;
+use Jcloutz\Forger\ForgerTrait;
 
-class MockerTraitTest extends PHPUnit_Framework_TestCase
+class ForgerTraitTest extends PHPUnit_Framework_TestCase
 {
     public function test_mocker_trait_instance_create()
     {
-        $model = Model::mimic();
+        $model = Model::forge();
         $this->assertNull($model->id);
     }
 
     public function test_mocker_trait_saved_instance_create()
     {
-        $model = Model::mimicCreate();
+        $model = Model::forgeCreate();
         $this->assertEquals(1, $model->id);
     }
 
     public function test_mocker_trait_overrides()
     {
-        $model = Model::mimic(array(
+        $model = Model::forge(array(
             'name' => 'name',
             'salary' => 1000,
         ));
@@ -27,4 +27,3 @@ class MockerTraitTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(1000, $model->salary);
     }
 }
-
