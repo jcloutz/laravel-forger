@@ -1,5 +1,5 @@
 {
-    "name": "jcloutz/mocker",
+    "name": "jcloutz/forger",
     "description": "",
     "authors": [
         {
@@ -8,14 +8,14 @@
         }
     ],
     "require": {
-        "php": ">=5.3.0",
+        "php": ">=5.4.0",
         "illuminate/support": "4.1.*",
         "fzaninotto/faker": "1.4.*@dev"
     },
     "autoload": {
         "classmap": [],
         "psr-0": {
-            "Jcloutz\\Mocker\\": "src/"
+            "Jcloutz\\Forger\\": "src/"
         }
     },
     "minimum-stability": "stable"
