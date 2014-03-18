@@ -6,6 +6,17 @@ This package is intended to allow for the fast creation of database objects in L
 
 ## Installation
 
+I the require key of your `compser.json` add the following.
+
+```
+"jcloutz/forger": "dev-master"
+```
+
+Run the compoer update command
+
+```
+$ composer update
+```
 
 ## Usage
 
