@@ -1,6 +1,6 @@
 # Fast Model Mockups in Laravel
 
-[![Build Status](https://travis-ci.org/jcloutz/laravel-mocker.png?branch=master)](https://travis-ci.org/jcloutz/laravel-mocker)
+[![Build Status](https://travis-ci.org/jcloutz/laravel-forger.png?branch=master)](https://travis-ci.org/jcloutz/laravel-forger)
 
 This package is intended to allow for the fast creation of database objects in Laravel.
 
